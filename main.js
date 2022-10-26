@@ -75,27 +75,49 @@ console.log(computer);
 // Задание 5.
 console.log("// Задание 5");
 
-class DeviceClass {
-  constructor(name, brand, power) {
+class deviceClass {
+  constructor(name, power) {
     (this.name = name),
-      (this.brand = brand),
       (this.powerConsumption = power + " watt"),
       (this.isPlugged = false);
   }
-  plugIn() {
+  on() {
     console.log(this.name + " is plugged!");
     this.isPlugged = true;
   }
-  unPlug() {
+  off() {
     console.log(this.name + " is unplugged!");
     this.isPlugged = false;
   }
 }
 
-const tableLamp1 = new DeviceClass("table lamp", "OKIRO LED 234 NEW", 24);
-const computer2 = new DeviceClass("computer", "ASUS PN41-BP040MV", 100);
-tableLamp.plugIn();
-computer.unPlug();
+// лампа
+class lamp extends deviceClass {
+  constructor(name, brand, type, power) {
+    super(name, power),
+    this.brand = brand,
+    this.type = type,
+    this.isPlugged = true
+  }
+}
 
-console.log(tableLamp1);
-console.log(computer2);
+// компьютер
+
+class pc extends deviceClass {
+  constructor(name, power, type, brand) {
+    super(name, power),
+    this.type = type,
+    this.brand = brand
+  }
+}
+
+// экземпляры
+const TABLE_LAMP = new lamp("table lamp", "OKIRO LED 234 NEW", "table lamp", 24);
+const LAPTOP = new pc("computer", 100, "laptop", "ASUS PN41-BP040MV");
+
+
+TABLE_LAMP.on();
+LAPTOP.off();
+
+console.log(TABLE_LAMP);
+console.log(LAPTOP);
